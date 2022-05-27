@@ -1,0 +1,77 @@
+To run yolo Model on Visual studio with .py Files on customised data:  
+after downloading a copy of yolo5v from https://github.com/ultralytics/yolov5
+
+Customised data Part
+1. Load your customized data on data/images
+	that folder contains two folders with names "images","labels". 
+	1.1. images (data/images/images) 
+		should mainly contain two folders, "train" and "validation". 
+		surely it has the images with .jpg format. (yolo5v supports .jpg only).
+	1.2 labels (data/images/labels)
+		also two folders, "train" and "validation". 
+		and it has the annontation info with .txt format. (yolo5v supports .txt only).
+
+2. Info file about data (IMPORTANT FILE)
+	that file is with .yaml extension. 
+	parameters of that file:
+		train --> path of train images 
+		val --> path of validation images
+		test --> path of test images (optinal)
+		nc --> number of classes 
+		names --> names of classes (oder matter, it should have the same order of the annontation file)
+	u can update the data/coco128.yaml
+
+3. Hyperparameters 
+	you can choose one of those files in data/hyps as your hyperparameters.
+	and you can create yours with .yaml and reassign hyperparameters to new values u choose.
+
+Run the program (my run file program is named main.py)
+	1. Make a newFile.py where the same directory of train.py 
+	2. Import train.py 
+	3. initials a dictionary variables with keys
+		 {"save_dir", "epochs", "batch_size", "weights", "single_cls", "evolve", "data", "cfg", 
+			"resume", "noval", "nosave", "workers", "freeze", "imgsz", "optimizer", "cos_lr", 
+			"sync_bn", "cache", 'rect',"image_weights", "quad", "hyp", "project", "name", 'exist_ok,  
+			'device', 'noplots', "noautoanchor", "label_smoothing", 'patience', "save-period",
+			"local_rank", "entity", "upload_dataset", "bbox_interval", "artifact_alias",
+			"multi_scale", "save_period"}
+	4. cast that dictionary into "SimpleNamespace" type
+		cause train file access keys from dictionary with "dot" 
+	5. call main function and pass the caseted dictionary to it 
+		train.main(castedDic)
+
+Notes on parameters:
+	weights:
+		pretrained --> "yolov5.pt"  (.pt file contains weights value)
+		not pretrained --> ''  (just single quote)  (if u use it, u should specify the architecture through cfg parameter)
+	cfg: a path to one of the models architectures (.yaml) in the models folder ex(models\yolov5s.yaml)
+	data: a path to .yaml file that's mentioned in the first section, point 2
+	hyp : a path to the .yaml hyperparameter file, mentioned in the first section, point 3.
+	
+	u can check other parameters defult values from the main.py of my project.
+
+
+
+
+
+
+
+To detect (Show results of your trained model on some test images, same main.py file): 
+	2. Import detect.py 
+	3. initials a dictionary variables with keys
+		 {"weights","source","data","imgsz","conf_thres","iou_thres","max_det", "device"  "view_img",  
+			"save_txt", "save_conf", "save_crop","nosave", "classes","agnostic_nms","augment",
+			"visualize", "update", "project","name","exist_ok", "line_thickness","hide_labels",
+			"hide_conf","half","dnn",
+                 }
+	4. cast that dictionary into "SimpleNamespace" type
+		cause train file access keys from dictionary with "dot" 
+	5. call main function and pass the caseted dictionary to it 
+		detect.main(castedDic)
+
+
+Notes on parameters:
+	"weights": a path file .pt from the weight folder that's save on runs folder (weights of your trained model) example (runs/eva/weights/last.pt)
+	"source": a path file to the test images (whether u saved in images or outside)
+	"data": a path to .yaml file that's mentioned in the first section, point 2
+	"save_txt": True (if u're gonna use boxes data to calculate IOU)

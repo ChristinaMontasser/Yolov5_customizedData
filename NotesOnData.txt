@@ -1,0 +1,26 @@
+Project description 
+4.1. Train
+	We’ve run the model with initialized weights for 200 epochs, then we repeat that for 4 times by passing the best.pt best weight 
+	file of each last model. Till the message of no improvement appears, this is the reason I’ve changed the patience parameter to be 300.
+	That sixth model (eva6) gave the best results on validation and was the most accurate one. That’s why there’re 6 eva files in runs/train.
+	What I did gives the epochs a room to learn from each others not sequentially but as a block. Like using the best of all. 
+
+4.2. Detect
+	I tested both model 5 and 6 on test set and I tried both of best and last weight files are there. 
+	That’s why there’re 4 eva file in runs/detect. The best is in file eva.
+
+	Best Results --> model6 and last weight (last.pt) (runs/detect/eva) 
+
+4.3. IOU.py
+	There’s an IOU.py file has three function:
+	1. txtData :
+		Parameters --> xywh of both true and predicated one label  
+		Return--> ordered pair of left top and right bottom points of both parameters, and calculated area of both shapes. 
+
+	2. areaInter:
+		Parameters  that returned ordered pair to calculate the area interaction
+		Return  area interaction
+
+	3. IOU 
+	s	Parameters  area of both and area intersection
+		Return  Intersection/ Union 
