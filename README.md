@@ -7,3 +7,5 @@ There're four extra files:
     NotesOnData.txt --> Project description 
     main.py --> program main to run the model 
     IOU.py --> calcuate IOU of test images 
+
+# Put the image folder in the data folder.
