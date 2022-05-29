@@ -67,7 +67,7 @@ import detect
 from types import SimpleNamespace
 Test = {
     "weights": "runs\\train\\exp6\\weights\\last.pt",  # model.pt path(s)
-    "source": "data\\images\\images\\test",  # file/dir/URL/glob, 0 for webcam
+    "source": "images\\images\\test",  # file/dir/URL/glob, 0 for webcam
     "data": 'data\coco128.yaml',  # dataset.yaml path
     "imgsz":(640,640),  # inference size (height, width)
     "conf_thres":0.4,  # confidence threshold
